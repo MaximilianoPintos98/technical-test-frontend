@@ -1,0 +1,29 @@
+<form [formGroup]="player_form" class="form-container">
+    <div class="form-row">
+        <div class="form-group">
+            <label for="firstName">Nombre</label>
+            <input pInputText formControlName="firstName"/>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Apellido</label>
+            <input pInputText formControlName="lastName"/>
+        </div>
+        <div class="form-group">
+            <label for="team">Equipo</label>
+            <p-dropdown [options]="teams" formControlName="teamId" optionLabel="name" [showClear]="true" placeholder="Select a City"></p-dropdown>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="position">Posición</label>
+            <input pInputText id="position" formControlName="position"/>
+        </div>
+        <div class="form-group">
+            <label for="nationality">Nacionalidad</label>
+            <input pInputText id="nationality" formControlName="nationality"/>
+        </div>
+        <div class="form-group mt-4">
+            <p-button (onClick)="savePlayer()" icon="pi pi-plus" label="Nuevo Jugador"></p-button>
+        </div>
+    </div>
+</form>

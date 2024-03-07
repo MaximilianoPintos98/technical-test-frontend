@@ -1,0 +1,29 @@
+<form [formGroup]="player_update_form" class="form-container">
+    <div class="form-row">
+        <div class="form-group">
+            <label for="firstName">Nombre</label>
+            <input pInputText formControlName="firstName" [ngModel]="player.firstName"/>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Apellido</label>
+            <input pInputText formControlName="lastName" [ngModel]="player.lastName"/>
+        </div>
+        <div class="form-group">
+            <label for="team">Equipo</label>
+            <p-dropdown [ngModel]="player.team" [options]="teams" formControlName="teamId" optionLabel="name" [showClear]="true"></p-dropdown>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="position">Posición</label>
+            <input pInputText id="position" formControlName="position" [ngModel]="player.position"/>
+        </div>
+        <div class="form-group">
+            <label for="nationality">Nacionalidad</label>
+            <input pInputText id="nationality" formControlName="nationality" [ngModel]="player.nationality"/>
+        </div>
+        <div class="form-group mt-4">
+            <p-button (onClick)="updatePlayer()"  icon="pi pi-plus" label="Actualizar Jugador"></p-button>
+        </div>
+    </div>
+</form>

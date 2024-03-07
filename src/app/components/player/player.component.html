@@ -1,0 +1,53 @@
+<div class="container m-5">
+    <div #formTemplate class="flex">
+        <div class="mt-5">
+            <p-button (click)="showDialog(true, false)" icon="pi pi-plus" label="Nuevo Jugador"></p-button>
+        </div>
+        <div class="flex form-group m-2">
+            <div class="m-2">
+                <label>Filtro por Nombre</label>
+                <input placeholder="Nombre" type="text" pInputText [(ngModel)]="firstName">
+            </div>
+            <div class="m-2">
+                <label >Filtro por Apellido</label>
+                <input placeholder="Apellido" type="text" pInputText [(ngModel)]="lastName">
+            </div>
+            <div class="mt-5">
+                <p-button icon="pi pi-search" (click)="search()"></p-button>
+            </div>
+        </div>
+    </div>
+
+    <p-table [value]="players" [tableStyle]="{ 'min-width': '50rem', 'margin-top': '5px' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Nombre y Apellido</th>
+                <th>Nacionalidad</th>
+                <th>Posicion</th>
+                <th>Equipo</th>
+                <th>Acciones</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-player>
+            <tr>
+                <td>{{ player.firstName }} {{ player.lastName }}</td>
+                <td>{{ player.nationality }}</td>
+                <td>{{ player.position }}</td>
+                <td>{{ player.team === null ? '' : player.team.name }}</td>
+                <td>
+                    <button pButton icon="pi pi-pencil" class="p-button-sm p-button-rounded p-button-success m-1" (click)="editPlayer(player)"></button>
+                    <button pButton icon="pi pi-trash" class="p-button-sm p-button-rounded p-button-danger m-1" (click)="deletePlayer(player.id)"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+
+<p-dialog header="Agregar Jugador" [(visible)]="displayDialog" [modal]="true" [responsive]="true" [style]="{ 'height': '300px' }">
+    <app-player-create-form></app-player-create-form> 
+</p-dialog>
+
+<p-dialog header="Actualizar Jugador" [(visible)]="displayUpdateDialog" [modal]="true" [responsive]="true" [style]="{ 'height': '300px' }">
+    <app-player-update-form [player]="player"></app-player-update-form> 
+</p-dialog>
